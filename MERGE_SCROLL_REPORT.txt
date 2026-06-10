@@ -1,0 +1,4 @@
+以第一個 ZIP 為基礎。
+參考第二個 ZIP 的首頁滑動遮擋方式。
+已重寫 scroll-overlay.css / scroll-overlay.js，移除前幾版造成硬線的遮擋設定。
+保留第一個 ZIP 的內容、社群圖示與基本頁面。

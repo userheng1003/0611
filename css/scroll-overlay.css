@@ -1,0 +1,379 @@
+
+/* Scroll overlay effect: Artwork covers hero while scrolling */
+.scroll-overlay-home {
+  background: #020202;
+}
+
+.scroll-overlay-home .dark-hero {
+  position: sticky;
+  top: 0;
+  min-height: 100vh;
+  z-index: 1;
+  will-change: opacity, transform, filter;
+}
+
+.scroll-overlay-home .dark-hero-content {
+  will-change: opacity, transform, filter;
+  transition: opacity .12s linear, transform .12s linear, filter .12s linear;
+}
+
+.scroll-overlay-home .scroll-artwork-cover {
+  position: relative;
+  z-index: 5;
+  margin-top: -8vh;
+  padding-top: clamp(90px, 13vh, 170px);
+  min-height: 112vh;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0) 0%, #020202 12%, #020202 100%);
+  border-top: 1px solid rgba(255,255,255,.08);
+}
+
+.scroll-overlay-home .scroll-artwork-cover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -32vh;
+  height: 42vh;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.88) 72%, #020202);
+  pointer-events: none;
+}
+
+.scroll-overlay-home .artwork-big-title {
+  grid-column: 1 / -1;
+  text-align: center;
+  justify-self: center;
+  width: 100%;
+  font-family: Arial, "Noto Sans TC", sans-serif;
+  font-weight: 900;
+  font-size: clamp(72px, 13vw, 210px);
+  line-height: .8;
+  letter-spacing: -.07em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 46px rgba(255,255,255,.16);
+  margin: 0 0 clamp(42px, 7vh, 90px);
+}
+
+.scroll-overlay-home .dark-work-index {
+  display: block;
+}
+
+.scroll-overlay-home .dark-work-list {
+  width: min(1260px, calc(100% - 56px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(26px, 4vw, 62px);
+}
+
+.scroll-overlay-home .dark-work-list a {
+  display: block;
+  min-height: clamp(320px, 36vw, 560px);
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  font-size: 0;
+  color: transparent;
+  transform: translateY(0);
+}
+
+.scroll-overlay-home .dark-work-list a::before {
+  display: none;
+}
+
+/* JS will inject preview images inside these links */
+.scroll-overlay-home .dark-work-list a img {
+  width: 100%;
+  height: 100%;
+  min-height: clamp(320px, 36vw, 560px);
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%) contrast(118%) brightness(.72);
+  opacity: .78;
+  transition: transform .6s ease, opacity .6s ease, filter .6s ease;
+}
+
+.scroll-overlay-home .dark-work-list a:hover img {
+  transform: scale(1.055);
+  opacity: 1;
+  filter: grayscale(0%) contrast(110%) brightness(.95);
+}
+
+@media (max-width: 900px) {
+  .scroll-overlay-home .dark-work-list {
+    grid-template-columns: 1fr;
+    width: min(620px, calc(100% - 32px));
+  }
+
+  .scroll-overlay-home .scroll-artwork-cover {
+    margin-top: -4vh;
+  }
+}
+
+
+
+
+/* Icon social footer */
+.icon-social-footer{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:38px;
+  padding:82px 20px 92px;
+  background:#020202;
+  border-top:1px solid rgba(255,255,255,.08);
+}
+
+.icon-social-footer .social-icon-link{
+  width:34px;
+  height:34px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  color:#ffffff;
+  text-decoration:none;
+  opacity:.88;
+  transition:transform .28s ease, opacity .28s ease, filter .28s ease;
+}
+
+.icon-social-footer .social-icon-link svg{
+  width:100%;
+  height:100%;
+  fill:currentColor;
+  display:block;
+}
+
+.icon-social-footer .social-icon-link:hover{
+  transform:translateY(-5px) scale(1.08);
+  opacity:1;
+  filter:drop-shadow(0 0 12px rgba(255,255,255,.35));
+}
+
+
+/* logged-in preview consistency fix */
+body:not(.front-edit-mode) .front-editor-toolbar,
+body:not(.front-edit-mode) .front-editor-hint,
+body:not(.front-edit-mode) .front-angle-display,
+body:not(.front-edit-mode) .moveable-control-box{display:none!important;}
+
+.front-edit-entry{
+position:fixed!important;
+left:50%!important;
+bottom:28px!important;
+transform:translateX(-50%)!important;
+z-index:99999!important;
+padding:15px 34px!important;
+border-radius:999px!important;
+border:0!important;
+background:rgba(255,255,255,.92)!important;
+color:#000!important;
+font-weight:900!important;
+box-shadow:0 18px 52px rgba(0,0,0,.45)!important;
+cursor:pointer!important;
+}
+
+body:not(.front-edit-mode) [data-front-editable="true"]{outline:none!important;cursor:inherit!important;}
+.icon-social-footer{position:relative!important;z-index:10!important;margin-top:0!important;padding:82px 20px 92px!important;}
+.scroll-cue{display:none!important;}
+
+
+
+
+/* When scrolled into Artwork, the hero buttons should not catch clicks */
+.scroll-overlay-home .dark-hero {
+  pointer-events: none;
+}
+
+.scroll-overlay-home .dark-hero .dark-outline-btn,
+.scroll-overlay-home .dark-hero a,
+.scroll-overlay-home .site-header a {
+  pointer-events: auto;
+}
+
+.scroll-overlay-home .dark-hero.hero-covered .dark-outline-btn,
+.scroll-overlay-home .dark-hero.hero-covered .dark-socials a {
+  pointer-events: none !important;
+}
+
+
+
+
+
+
+
+/* REFERENCE_SCROLL_STYLE_IMPORTED_20260610
+   Use the second file's desired scroll-cover feeling, but keep the first file as base. */
+.scroll-overlay-home {
+  background: #020202;
+}
+
+.scroll-overlay-home .dark-hero {
+  position: sticky !important;
+  top: 0 !important;
+  min-height: 100vh !important;
+  z-index: 1 !important;
+  will-change: opacity, transform, filter;
+}
+
+.scroll-overlay-home .dark-hero-content {
+  will-change: opacity, transform, filter;
+  transition: opacity .12s linear, transform .12s linear, filter .12s linear;
+}
+
+.scroll-overlay-home .scroll-artwork-cover {
+  position: relative !important;
+  z-index: 5 !important;
+  margin-top: -8vh !important;
+  padding-top: clamp(90px, 13vh, 170px) !important;
+  min-height: 112vh !important;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0) 0%, #020202 12%, #020202 100%) !important;
+  border-top: 1px solid rgba(255,255,255,.08);
+  overflow: visible !important;
+}
+
+.scroll-overlay-home .scroll-artwork-cover::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -32vh;
+  height: 42vh;
+  background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,.88) 72%, #020202);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.scroll-overlay-home .scroll-artwork-cover::after {
+  display: none !important;
+}
+
+.scroll-overlay-home .dark-work-index {
+  display: block !important;
+}
+
+.scroll-overlay-home .artwork-big-title {
+  position: relative !important;
+  z-index: 2 !important;
+  grid-column: 1 / -1;
+  text-align: center;
+  justify-self: center;
+  width: 100%;
+  font-family: Arial, "Noto Sans TC", sans-serif;
+  font-weight: 900;
+  font-size: clamp(72px, 13vw, 210px);
+  line-height: .8;
+  letter-spacing: -.07em;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 46px rgba(255,255,255,.16);
+  margin: 0 0 clamp(42px, 7vh, 90px);
+}
+
+.scroll-overlay-home .dark-work-list {
+  position: relative !important;
+  z-index: 2 !important;
+  width: min(1260px, calc(100% - 56px));
+  margin: 0 auto;
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(26px, 4vw, 62px);
+  background: transparent !important;
+}
+
+.scroll-overlay-home .dark-work-list a {
+  display: block;
+  min-height: clamp(320px, 36vw, 560px);
+  border-radius: 24px;
+  overflow: hidden;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.08);
+  font-size: 0;
+  color: transparent;
+  transform: translateY(0);
+}
+
+.scroll-overlay-home .dark-work-list a::before {
+  display: none !important;
+}
+
+.scroll-overlay-home .dark-work-list a img {
+  width: 100%;
+  height: 100%;
+  min-height: clamp(320px, 36vw, 560px);
+  object-fit: cover;
+  display: block;
+  filter: grayscale(100%) contrast(118%) brightness(.72);
+  opacity: .78;
+  transition: transform .6s ease, opacity .6s ease, filter .6s ease;
+}
+
+.scroll-overlay-home .dark-work-list a:hover img {
+  transform: scale(1.055);
+  opacity: 1;
+  filter: grayscale(0%) contrast(110%) brightness(.95);
+}
+
+.scroll-overlay-home .scroll-cue {
+  display: none !important;
+}
+
+.scroll-overlay-home .icon-social-footer,
+.scroll-overlay-home .site-social-footer {
+  position: relative !important;
+  z-index: 10 !important;
+  background: #020202 !important;
+}
+
+/* Hide old text social row if any remains */
+.scroll-overlay-home .dark-footer-contact,
+.scroll-overlay-home .dark-socials:not(.icon-social-footer) {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .scroll-overlay-home .dark-work-list {
+    grid-template-columns: 1fr;
+    width: min(620px, calc(100% - 32px));
+  }
+  .scroll-overlay-home .scroll-artwork-cover {
+    margin-top: -4vh !important;
+  }
+}
+
+/* about two columns */
+.statement-card p,
+.statement-grid p,
+.about-columns p{
+  font-size:22px !important;
+  font-weight:700 !important;
+  line-height:2 !important;
+}
+
+/* exhibition order */
+.exhibition-venue{
+  order:1 !important;
+}
+.exhibition-type{
+  order:2 !important;
+}
+
+.funnel-text{
+max-width:1100px;
+margin:40px auto 80px;
+text-align:center;
+}
+.funnel-text p{
+font-size:clamp(18px,1.4vw,28px)!important;
+font-weight:400!important;
+line-height:1.9!important;
+letter-spacing:.03em;
+max-width:980px;
+margin:0 auto 42px;
+text-indent:0!important;
+}
+.funnel-text p:last-child{
+max-width:760px;
+}

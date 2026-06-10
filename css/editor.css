@@ -1,0 +1,349 @@
+
+/* ===== V5 Visual Inline Editor ===== */
+
+.footer {
+  display: none !important;
+}
+
+.front-edit-entry {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  z-index: 99990;
+  padding: 13px 30px;
+  border-radius: 999px;
+  border: 1px solid rgba(17,17,17,.18);
+  background: #111;
+  color: white;
+  box-shadow: 0 14px 35px rgba(0,0,0,.22);
+  cursor: pointer;
+  font-weight: 800;
+  letter-spacing: .04em;
+}
+
+.front-edit-entry:hover {
+  transform: translateX(-50%) translateY(-3px);
+}
+
+.front-editor-toolbar {
+  position: fixed;
+  top: 86px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99998;
+  display: none;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: min(1180px, calc(100vw - 24px));
+  padding: 12px 16px;
+  border-radius: 18px;
+  background: rgba(17,17,17,.96);
+  color: white;
+  box-shadow: 0 16px 45px rgba(0,0,0,.28);
+}
+
+.front-editor-toolbar.active {
+  display: flex;
+}
+
+.front-editor-toolbar button,
+.front-editor-toolbar input,
+.front-editor-toolbar select {
+  width: auto;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.24);
+}
+
+.front-editor-toolbar button {
+  background: white;
+  color: #111;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.front-editor-toolbar button.danger {
+  background: #d93025;
+  color: white;
+}
+
+.front-editor-toolbar label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.front-edit-mode [data-front-editable="true"],
+.front-added-item {
+  outline: 1px dashed rgba(0,0,0,.28);
+  outline-offset: 4px;
+  cursor: move;
+}
+
+.front-edit-mode [data-front-editable="true"]:hover,
+.front-added-item:hover {
+  outline: 2px solid #1a73e8;
+}
+
+.front-edit-selected {
+  outline: 3px solid #1a73e8 !important;
+  outline-offset: 5px !important;
+}
+
+.front-added-item {
+  position: absolute;
+  z-index: 30;
+  min-width: 80px;
+  min-height: 42px;
+}
+
+.front-added-text {
+  font-size: 44px;
+  font-weight: 800;
+  white-space: pre-line;
+  color: #111;
+}
+
+.front-added-button {
+  display: inline-block;
+  padding: 14px 24px;
+  border-radius: 14px;
+  background: #111;
+  color: white;
+  border: 1px solid #111;
+  text-align: center;
+}
+
+.front-added-image img {
+  width: 300px;
+  display: block;
+  border-radius: 14px;
+}
+
+.front-added-video iframe,
+.front-added-video video {
+  width: 520px;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: 14px;
+  display: block;
+  background: #111;
+}
+
+.front-angle-display {
+  position: fixed;
+  right: 22px;
+  bottom: 22px;
+  z-index: 99999;
+  background: #111;
+  color: white;
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: none;
+}
+
+.front-editor-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 86px;
+  transform: translateX(-50%);
+  z-index: 99989;
+  background: rgba(255,255,255,.96);
+  color: #111;
+  border: 1px solid rgba(0,0,0,.12);
+  border-radius: 999px;
+  padding: 9px 16px;
+  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+  display: none;
+  font-size: 13px;
+}
+
+.front-editor-hint.active {
+  display: block;
+}
+
+.front-edit-mode a[data-front-editable="true"] {
+  pointer-events: none;
+}
+
+.logout-bottom {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  transform: translateX(-50%);
+  z-index: 99960;
+  padding: 12px 24px;
+  border-radius: 999px;
+  background: #fff;
+  color: #111;
+  border: 1px solid rgba(0,0,0,.18);
+  box-shadow: 0 12px 30px rgba(0,0,0,.12);
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.logout-bottom:hover {
+  background: #111;
+  color: white;
+}
+
+.v5-page-seed {
+  min-height: 80vh;
+}
+
+.v5-splash-admin {
+  border: 1px dashed var(--line);
+  border-radius: 18px;
+  padding: 18px;
+  margin-top: 16px;
+  background: rgba(255,255,255,.5);
+}
+
+@media (max-width: 760px) {
+  .front-editor-toolbar {
+    top: 10px;
+    justify-content: center;
+  }
+}
+
+
+
+
+/* final login logic fix */
+body:not(.front-edit-mode) [data-front-editable="true"] {
+  outline: none !important;
+  cursor: auto !important;
+}
+
+body:not(.front-edit-mode) .front-editor-toolbar,
+body:not(.front-edit-mode) .front-editor-hint,
+body:not(.front-edit-mode) .front-angle-display {
+  display: none !important;
+}
+
+
+/* V6 strict auth: no edit UI unless JS creates it after isLoggedIn_v6 */
+body:not(.front-edit-mode) [data-front-editable="true"] {
+  outline: none !important;
+  cursor: inherit !important;
+}
+
+body:not(.front-edit-mode) .moveable-control-box,
+body:not(.front-edit-mode) .front-editor-toolbar,
+body:not(.front-edit-mode) .front-editor-hint,
+body:not(.front-edit-mode) .front-angle-display {
+  display: none !important;
+}
+
+
+/* V7 undo/cancel buttons */
+.front-editor-toolbar #frontUndoBtn {
+  background: #fbbc04;
+  color: #111;
+}
+
+.front-editor-toolbar #frontCancelBtn {
+  background: #eeeeee;
+  color: #111;
+}
+
+
+/* V8 stable editor patch */
+.front-editor-toolbar #frontUndoBtn {
+  background: #fbbc04;
+  color: #111;
+}
+
+.front-editor-toolbar #frontCancelBtn {
+  background: #eeeeee;
+  color: #111;
+}
+
+body:not(.front-edit-mode) [data-front-editable="true"] {
+  outline: none !important;
+  cursor: inherit !important;
+}
+
+body:not(.front-edit-mode) .moveable-control-box,
+body:not(.front-edit-mode) .front-editor-toolbar,
+body:not(.front-edit-mode) .front-editor-hint,
+body:not(.front-edit-mode) .front-angle-display {
+  display: none !important;
+}
+
+.front-edit-mode [data-front-editable="true"] {
+  outline: 1px dashed rgba(0,0,0,.25);
+  outline-offset: 4px;
+}
+
+.front-edit-selected {
+  outline: 3px solid #1a73e8 !important;
+  outline-offset: 5px !important;
+}
+
+
+/* logged-in preview consistency fix */
+body:not(.front-edit-mode) .front-editor-toolbar,
+body:not(.front-edit-mode) .front-editor-hint,
+body:not(.front-edit-mode) .front-angle-display,
+body:not(.front-edit-mode) .moveable-control-box{display:none!important;}
+
+.front-edit-entry{
+position:fixed!important;
+left:50%!important;
+bottom:28px!important;
+transform:translateX(-50%)!important;
+z-index:99999!important;
+padding:15px 34px!important;
+border-radius:999px!important;
+border:0!important;
+background:rgba(255,255,255,.92)!important;
+color:#000!important;
+font-weight:900!important;
+box-shadow:0 18px 52px rgba(0,0,0,.45)!important;
+cursor:pointer!important;
+}
+
+body:not(.front-edit-mode) [data-front-editable="true"]{outline:none!important;cursor:inherit!important;}
+.icon-social-footer{position:relative!important;z-index:10!important;margin-top:0!important;padding:82px 20px 92px!important;}
+.scroll-cue{display:none!important;}
+
+
+
+/* about two columns */
+.statement-card p,
+.statement-grid p,
+.about-columns p{
+  font-size:22px !important;
+  font-weight:700 !important;
+  line-height:2 !important;
+}
+
+/* exhibition order */
+.exhibition-venue{
+  order:1 !important;
+}
+.exhibition-type{
+  order:2 !important;
+}
+
+.funnel-text{
+max-width:1100px;
+margin:40px auto 80px;
+text-align:center;
+}
+.funnel-text p{
+font-size:clamp(18px,1.4vw,28px)!important;
+font-weight:400!important;
+line-height:1.9!important;
+letter-spacing:.03em;
+max-width:980px;
+margin:0 auto 42px;
+text-indent:0!important;
+}
+.funnel-text p:last-child{
+max-width:760px;
+}

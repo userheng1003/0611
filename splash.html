@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opening Animation</title>
+<style>
+body{margin:0;background:#050505;color:white;font-family:Arial,"Microsoft JhengHei",sans-serif;overflow:hidden}
+.splash{width:100vw;height:100vh;position:relative;display:grid;place-items:center}
+video{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;background:#050505}
+.overlay{position:relative;z-index:2;text-align:center;background:rgba(0,0,0,.28);padding:42px;border-radius:24px}
+h1{font-size:clamp(52px,12vw,160px);line-height:.85;margin:0;letter-spacing:-.08em}
+a{margin-top:22px;display:inline-block;padding:12px 22px;border:1px solid white;background:transparent;color:white;border-radius:999px;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="splash">
+  <video id="introVideo" autoplay muted playsinline>
+    <source id="introSource" src="videos/intro.mp4" type="video/mp4">
+  </video>
+  <div class="overlay">
+    <h1>AURA<br>CHEN</h1>
+    <p>Opening Animation</p>
+    <a href="index.html">Skip / Enter</a>
+  </div>
+</div>
+<script>
+const saved = localStorage.getItem("introVideo_v5");
+const video = document.getElementById("introVideo");
+const source = document.getElementById("introSource");
+
+if (saved) {
+  source.src = saved;
+  video.load();
+}
+
+video.addEventListener("ended", () => location.href = "index.html");
+video.addEventListener("error", () => {
+  // 如果沒有 videos/intro.mp4，就保留畫面，讓使用者可按 Skip。
+});
+</script>
+<script src="js/site-settings.js"></script>
+<script src="js/remote-data-loader.js"></script>
+</body>
+</html>

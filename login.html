@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理登入 | 孫立恆</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dark-home.css">
+  <link rel="stylesheet" href="css/cms-dark.css">
+</head>
+<body class="cms-dark">
+<header class="site-header">
+  <div class="navbar">
+    <a href="index.html" class="logo">SUN LI-HENG</a>
+    <nav class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="about.html">藝術家自述</a>
+      <a href="works.html">作品系列</a>
+      <a href="experiments.html">媒介實驗</a>
+      <a href="exhibitions.html">展覽紀錄</a>
+      <a href="notes.html">工作室筆記</a>
+      <a href="contact.html">聯絡</a>
+      <a href="login.html">登入</a>
+    </nav>
+  </div>
+</header>
+<main class="cms-login-page">
+  <section class="cms-login-card">
+    <h1>Content<br>Manager</h1>
+    <p class="cms-subtitle">請登入後進入網站內容管理。登入後前台頁面會出現編輯功能。</p>
+
+    <form id="loginForm">
+      <div class="cms-form-row">
+        <label for="username">帳號</label>
+        <input id="username" type="text" placeholder="admin" autocomplete="username" required>
+      </div>
+
+      <div class="cms-form-row">
+        <label for="password">密碼</label>
+        <input id="password" type="password" placeholder="1234" autocomplete="current-password" required>
+      </div>
+
+      <div class="cms-actions">
+        <button class="cms-btn" type="submit">管理</button>
+        <a class="cms-btn secondary" href="index.html">回首頁</a>
+      </div>
+    </form>
+  </section>
+</main>
+
+<script src="js/site-settings.js"></script>
+<script src="js/remote-data-loader.js"></script>
+<script src="js/site.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>

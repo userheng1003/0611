@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>網站內容管理 | 孫立恆</title>
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dark-home.css">
+  <link rel="stylesheet" href="css/cms-dark.css">
+</head>
+<body class="cms-dark">
+<header class="site-header">
+  <div class="navbar">
+    <a href="index.html" class="logo">SUN LI-HENG</a>
+    <nav class="nav-links">
+      <a href="index.html">首頁</a>
+      <a href="about.html">藝術家自述</a>
+      <a href="works.html">作品系列</a>
+      <a href="experiments.html">媒介實驗</a>
+      <a href="exhibitions.html">展覽紀錄</a>
+      <a href="notes.html">工作室筆記</a>
+      <a href="contact.html">聯絡</a>
+      <a href="login.html">登入</a>
+    </nav>
+  </div>
+</header>
+<main class="cms-admin-page">
+  <div class="cms-admin-shell">
+    <header class="cms-admin-header">
+      <div>
+        <h1>Website<br>CMS</h1>
+        <p>管理首頁、作品、展覽、文章與權限。公開頁面登入後可直接進入編輯模式。</p>
+      </div>
+
+      <a class="cms-btn secondary" href="index.html">回到前台</a>
+    </header>
+
+    <section class="cms-admin-grid">
+      <aside class="cms-sidebar">
+        <h2>管理選單</h2>
+        <div class="cms-menu">
+          <button class="active" data-panel="homePanel">首頁管理</button>
+          <button data-panel="worksPanel">作品管理</button>
+          <button data-panel="exhibitionsPanel">展覽管理</button>
+          <button data-panel="articlesPanel">文章管理</button>
+          <button data-panel="rolesPanel">權限管理</button>
+        </div>
+      </aside>
+
+      <section class="cms-panel" id="homePanel">
+        <h2>首頁管理</h2>
+
+        <div class="cms-card-grid">
+
+          <div class="cms-card">
+            <h3>網站基本資料</h3>
+            <p>這裡可以修改首頁左上角名稱與底部社群連結。</p>
+
+            <div class="cms-upload-row">
+              <label>左上角 Logo 名稱</label>
+              <input id="siteLogoInput" type="text" placeholder="SUN LI-HENG">
+
+              <label>Facebook 連結</label>
+              <input id="siteFacebookInput" type="text" placeholder="https://www.facebook.com/...">
+
+              <label>Instagram 連結</label>
+              <input id="siteInstagramInput" type="text" placeholder="https://www.instagram.com/...">
+
+              <label>Email / Mail</label>
+              <input id="siteEmailInput" type="email" placeholder="your@email.com">
+
+              <button class="cms-small-btn" id="saveSiteSettingsBtn" type="button">儲存網站基本資料</button>
+            </div>
+          </div>
+
+          <div class="cms-card">
+            <h3>開場動畫</h3>
+            <p>把 MP4 / WEBM 放到 <code>videos/intro.mp4</code>，或在這裡選擇影片，會暫存在瀏覽器。</p>
+
+            <div class="cms-upload-row">
+              <input id="introVideoUpload" type="file" accept="video/mp4,video/webm">
+              <button class="cms-small-btn" id="saveIntroVideoBtn">儲存開場影片</button>
+              <button class="cms-small-btn" id="clearIntroVideoBtn">清除暫存開場影片</button>
+            </div>
+          </div>
+
+          <div class="cms-card">
+            <h3>快速進入頁面編輯</h3>
+            <p>登入後回到任一公開頁面，底部會出現「編輯」鍵。可直接放置文字、圖片、影片、按鈕。</p>
+            <a class="cms-btn" href="index.html">去首頁編輯</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="cms-panel" id="worksPanel" style="display:none">
+        <h2>作品管理</h2>
+        <div id="savedWorksList" class="cms-work-list"></div>
+        <div style="margin-top:28px">
+          <button class="cms-btn" id="newWorkBtn">新增作品</button>
+        </div>
+      </section>
+
+      <section class="cms-panel" id="exhibitionsPanel" style="display:none">
+        <h2>展覽管理</h2>
+        <div class="cms-card">
+          <h3>展覽紀錄</h3>
+          <p>目前可先到展覽頁面，用前台編輯模式直接修改展覽內容與視覺版面。</p>
+          <a class="cms-btn" href="exhibitions.html">去展覽頁編輯</a>
+        </div>
+      </section>
+
+      <section class="cms-panel" id="articlesPanel" style="display:none">
+        <h2>文章管理</h2>
+        <div class="cms-card">
+          <h3>工作室筆記 / 技術筆記 / 課堂日誌</h3>
+          <p>目前可先到工作室筆記頁，用前台編輯模式直接修改文章卡片。</p>
+          <a class="cms-btn" href="notes.html">去筆記頁編輯</a>
+        </div>
+      </section>
+
+      <section class="cms-panel" id="rolesPanel" style="display:none">
+        <h2>權限管理</h2>
+        <table class="cms-role-table">
+          <tr><th>角色</th><th>權限</th></tr>
+          <tr><td>管理者</td><td>作品管理、首頁管理、頁面可視覺編輯、權限管理</td></tr>
+          <tr><td>編輯者</td><td>編輯作品與展覽內容</td></tr>
+          <tr><td>作者</td><td>撰寫工作室筆記與草稿</td></tr>
+          <tr><td>訪客</td><td>瀏覽公開頁面</td></tr>
+        </table>
+      </section>
+    </section>
+
+    <div class="cms-bottom-logout">
+      <button class="cms-btn secondary" type="button" onclick="logoutSite()">登出管理模式</button>
+    </div>
+  </div>
+
+<section class="admin-panel github-sync-panel" id="githubSyncPanel">
+  <h2>GitHub 同步</h2>
+  <p class="admin-help">把目前在瀏覽器編輯的作品、網站設定與版面資料，同步到 GitHub 的 <code>data/site-data.json</code>。</p>
+
+  <label>Repository（格式：帳號/倉庫）</label>
+  <input id="ghRepo" type="text" placeholder="例如：userheng1003/TEST">
+
+  <label>Branch</label>
+  <input id="ghBranch" type="text" value="main">
+
+  <label>GitHub Fine-grained Token</label>
+  <input id="ghToken" type="password" placeholder="只需要 Contents: Read and write">
+
+  <div class="admin-actions">
+    <button id="ghSaveConfig" type="button">儲存同步設定</button>
+    <button id="ghPull" type="button">從 GitHub 載入</button>
+    <button id="ghPush" type="button">推送到 GitHub</button>
+    <button id="ghExport" type="button">匯出 site-data.json</button>
+  </div>
+
+  <p id="ghStatus" class="admin-help"></p>
+
+  <details class="admin-help">
+    <summary>Token 怎麼設定？</summary>
+    <p>GitHub → Settings → Developer settings → Fine-grained tokens → Generate new token。</p>
+    <p>Repository access 選你的網站 repo，Permissions 只開 <b>Contents: Read and write</b>。</p>
+    <p>Token 不會寫進網站檔案，只會存在你這台電腦的瀏覽器 localStorage。</p>
+  </details>
+</section>
+
+</main>
+
+<script src="js/site-settings.js"></script>
+<script src="js/remote-data-loader.js"></script>
+<script src="js/site.js"></script>
+<script src="js/logout.js"></script>
+<script src="js/admin.js"></script>
+<script src="js/github-sync.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>作品頁面視覺編輯器</title>
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+<script src="https://daybrush.com/moveable/release/latest/dist/moveable.min.js"></script>
+</head>
+<body>
+<div class="visual-toolbar">
+  <button id="addText">新增文字</button>
+  <button id="addImage">新增圖片</button>
+  <label>顏色 <input type="color" id="colorPicker" value="#111111"></label>
+  <label>字級 <input type="number" id="fontSizeInput" value="42" min="8" max="240"></label>
+  <button id="saveBtn">儲存作品頁</button>
+  <button onclick="location.href='admin.html'">回後台</button>
+  <span id="angleDisplay" class="angle-display">0°</span>
+</div>
+<div style="max-width:1100px;margin:30px auto;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+  <input id="titleInput" placeholder="作品標題">
+  <input id="metaInput" placeholder="年份，例如 2026">
+  <input id="mediumInput" placeholder="媒材">
+  <input id="categoryInput" placeholder="分類，例如 錄像 / 裝置">
+</div>
+<div class="visual-canvas" id="canvas"></div>
+<script src="js/site-settings.js"></script>
+<script src="js/remote-data-loader.js"></script>
+<script src="js/site.js"></script>
+<script src="js/visual-editor.js"></script>
+</body>
+</html>

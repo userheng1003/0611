@@ -1,0 +1,5 @@
+已重寫首頁 Artwork 遮擋方式：
+1. 移除舊的多段遮擋 CSS。
+2. Artwork 區改為往上疊 -34vh。
+3. 新增 artwork-gradient-veil 真實漸層層，從透明慢慢過渡到黑色。
+4. 移除會造成水平線的 ::before / ::after 舊設定。
